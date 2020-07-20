@@ -1,0 +1,28 @@
+[package]
+name = "wasm-contract-template"
+version = "0.1.0"
+authors = ["Alexey Frolov <alexey@parity.io>"]
+
+[dependencies]
+pwasm-std = { path = "./pwasm-std" }
+pwasm-ethereum = { path = "./pwasm-ethereum"}
+pwasm-abi = { path = "./pwasm-abi" }
+pwasm-abi-derive = { path = "./pwasm-abi/derive" }
+lazy_static = { version = "1.2.0", features = ["spin_no_std"] }
+serde = { version = "1.0.0", default-features = false, features = ["alloc", "derive"] }
+serde_json = { version = "1.0" }
+
+[dev-dependencies.pwasm-test]
+git = "https://github.com/paritytech/pwasm-test"
+default-features = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[features]
+std = ["pwasm-std/std", "pwasm-ethereum/std", "pwasm-test/std"]
+
+[profile.release]
+panic = "abort"
+lto = true
+opt-level = "z"

@@ -1,0 +1,28 @@
+[package]
+name = "pwasm-abi"
+version = "0.2.2"
+authors = ["NikVolf <nikvolf@gmail.com>", "Alexey Frolov <alexey@parity.io>"]
+license = "MIT/Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/paritytech/pwasm-abi"
+homepage = "https://github.com/paritytech/pwasm-abi"
+documentation = "https://paritytech.github.io/pwasm-abi/pwasm_abi/"
+description = "Rust WebAssembly Contracts Abi"
+keywords = ["wasm", "parity", "webassembly", "blockchain", "abi"]
+categories = ["no-std", "embedded"]
+exclude = [ "tests/*", "derive/*" ]
+
+[profile.release]
+panic = "abort"
+
+[dependencies]
+pwasm-std = { path = "../pwasm-std"}
+byteorder = { version = "1.2", default-features = false }
+
+[dev-dependencies]
+hex-literal = "0.1"
+
+[features]
+default = []
+std = ["pwasm-std/std", "byteorder/std"]
+strict = []

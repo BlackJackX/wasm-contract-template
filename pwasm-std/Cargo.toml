@@ -1,0 +1,28 @@
+[package]
+name = "pwasm-std"
+version = "0.13.1"
+authors = ["Nikolay Volf <nikvolf@gmail.com>", "Sergey Shulepov <s.pepyakin@gmail.com>"]
+license = "MIT/Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/paritytech/pwasm-std"
+homepage = "https://github.com/paritytech/pwasm-std"
+documentation = "https://paritytech.github.io/pwasm-std/pwasm_std/"
+description = "Parity WebAssembly standard library for contract development"
+keywords = ["wasm", "parity", "webassembly", "blockchain"]
+categories = ["no-std", "embedded"]
+exclude = [ "demo/*" ]
+
+[dependencies]
+fixed-hash = { version = "0.3.0", default-features = false }
+uint = { version = "0.5.0", default-features = false }
+byteorder = { version = "1", default-features = false }
+pwasm-alloc = { path = "alloc", version = "0.4" }
+pwasm-libc = { path = "libc", version = "0.2" }
+tiny-keccak = "1"
+
+[features]
+default = ["uint/common"]
+std = ["fixed-hash/std", "uint/std", "byteorder/std"]
+strict = ["pwasm-libc/strict", "pwasm-alloc/strict"]
+test = ["std", "strict"]
+panic_with_msg = []

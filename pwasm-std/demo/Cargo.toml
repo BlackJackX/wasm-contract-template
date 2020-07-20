@@ -1,0 +1,15 @@
+[package]
+name = "wasm-demo"
+version = "0.0.0"
+authors = ["NikVolf <nikvolf@gmail.com>"]
+
+[dependencies]
+pwasm-std = { path = "../" }
+
+[lib]
+path = "src/demo.rs"
+crate-type = ["cdylib"]
+
+[profile.release]
+panic = "abort"
+lto = true
